@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/core/constants.dart';
+import 'package:movie_app/core/failure.dart';
 import 'package:movie_app/core/widgets/primary_button.dart';
 import 'package:movie_app/features/movie_flow/genre/list_card.dart';
 import 'package:movie_app/features/movie_flow/movie_flow_controller.dart';
@@ -45,8 +46,10 @@ class GenreScreen extends ConsumerWidget {
                           itemCount: genres.length,
                         );
                       },
-                      error: (error, stackTrace) =>
-                          Center(child: Text(error.toString())),
+                      error: (error, stackTrace) => Center(
+                          child: Text(error is Failure
+                              ? error.message
+                              : 'Something went wrong')),
                       loading: () => Center(
                           child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
