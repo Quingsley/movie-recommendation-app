@@ -1,18 +1,16 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app/features/movie_flow/movie_flow.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/features/movie_flow/presentation/cubit/movie_flow_cubit.dart';
+import 'package:movie_app/features/movie_flow/presentation/pages/movie_flow_page.dart';
+import 'package:movie_app/injection.dart';
 import 'package:movie_app/theme/custom_theme.dart';
+import 'injection.dart' as di;
 
-void main() {
-  runApp(const ProviderScope(child: MainApp()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  runApp(const MainApp());
 }
-
-final dioProvider = Provider(
-  (ref) => Dio(
-    BaseOptions(baseUrl: 'https://api.themoviedb.org/3'),
-  ),
-);
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -24,7 +22,12 @@ class MainApp extends StatelessWidget {
       theme: CustomTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
-      home: const MovieFlow(),
+      home: BlocProvider(
+        create: (context) {
+          return serviceLocator<MovieFlowCubit>();
+        },
+        child: const MovieFlow(),
+      ),
     );
   }
 }
