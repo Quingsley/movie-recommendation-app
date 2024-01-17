@@ -16,7 +16,11 @@ class ResultsCubit extends Cubit<ResultsState> {
       [DateTime? yearsBackFromDate]) async {
     final date = yearsBackFromDate ?? DateTime.now();
     final year = date.year - yearsBack;
-    final genreIds = genres.map((e) => e.id).toList().join(',');
+    final genreIds = genres
+        .where((genre) => genre.isSelected)
+        .map((e) => e.id)
+        .toList()
+        .join(',');
 
     emit(ResultsLoadingState());
     final result = await movieUseCase.getRecommendedMovie(
@@ -24,10 +28,12 @@ class ResultsCubit extends Cubit<ResultsState> {
 
     result.fold((error) => emit(ResultsErrorState(message: error.message)),
         (movie) {
-      print(movie);
       final movieGenres =
           genres.where((genre) => movie.genreIds.contains(genre.id)).toList();
-      movie = movie.copyWith(genres: movieGenres);
+      movie = movie.copyWith(
+          genres: movieGenres,
+          posterPath: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+          backdropPath: 'https://image.tmdb.org/t/p/w500${movie.backdropPath}');
       emit(ResultsLoadedState(movieEntity: movie));
     });
   }
