@@ -5,7 +5,6 @@ import 'package:movie_app/core/widgets/primary_button.dart';
 import 'package:movie_app/features/results/presentation/cubit/results_cubit.dart';
 import 'package:movie_app/features/results/presentation/widgets/cover_image.dart';
 import 'package:movie_app/features/results/presentation/widgets/movie_image_details.dart';
-import 'package:movie_app/injection.dart';
 
 class ResultScreenAnimator extends StatefulWidget {
   const ResultScreenAnimator({super.key});
@@ -35,17 +34,11 @@ class _ResultScreenAnimatorState extends State<ResultScreenAnimator>
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => serviceLocator<ResultsCubit>(),
-      child: ResultsScreen(animationController: controller),
-    );
+    return ResultsScreen(animationController: controller);
   }
 }
 
 class ResultsScreen extends StatelessWidget {
-  static route({bool fullScreenDialog = true}) =>
-      MaterialPageRoute(builder: (context) => const ResultScreenAnimator());
-
   ResultsScreen({super.key, required this.animationController})
       : titleOpacity = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
             parent: animationController, curve: const Interval(0, .3))),
