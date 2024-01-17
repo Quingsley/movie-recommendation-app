@@ -9,9 +9,11 @@ environment:
 dependencies:
   dartz: ^0.10.1
   dio: ^5.4.0
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
-  flutter_riverpod: ^2.4.9
+  flutter_bloc: ^8.1.3
+  get_it: ^7.6.6
 
 dev_dependencies:
   flutter_test:
