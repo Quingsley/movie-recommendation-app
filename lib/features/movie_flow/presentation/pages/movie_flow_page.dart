@@ -12,7 +12,7 @@ class MovieFlow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
-      controller: BlocProvider.of<MovieFlowCubit>(context).state.controller,
+      controller: BlocProvider.of<MovieFlowCubit>(context).state,
       physics: const NeverScrollableScrollPhysics(),
       children: const [
         LandingPage(),
