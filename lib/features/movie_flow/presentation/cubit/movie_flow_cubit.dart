@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/features/genre/presentation/cubit/genre_cubit.dart';
 
+@Injectable()
 class MovieFlowCubit extends Cubit<PageController> {
   MovieFlowCubit() : super(PageController());
 
