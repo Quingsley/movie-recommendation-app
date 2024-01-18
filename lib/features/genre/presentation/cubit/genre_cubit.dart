@@ -1,10 +1,12 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/features/genre/domain/entities/genre_entity.dart';
 import 'package:movie_app/features/genre/domain/usecases/genre_usecase.dart';
 
 part 'genre_state.dart';
 
+@Injectable()
 class GenreCubit extends Cubit<GenreState> {
   GenreCubit({required this.genreUseCase})
       : super(const GenreInitial(genres: []));
