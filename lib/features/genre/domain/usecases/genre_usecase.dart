@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/core/error/failures.dart';
 import 'package:movie_app/features/genre/domain/entities/genre_entity.dart';
 import 'package:movie_app/features/genre/domain/repositories/igenre_repository.dart';
 
+@Injectable()
 class GenreUseCase {
   final IGenreRepository genreRepository;
 
