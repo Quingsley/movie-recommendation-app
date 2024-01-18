@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/core/error/failures.dart';
 import 'package:movie_app/features/results/data/datasources/movie_data_source.dart';
 import 'package:movie_app/features/results/domain/entities/movie_entity.dart';
 import 'package:movie_app/features/results/domain/repositories/imovie_repository.dart';
 
+@Injectable(as: IMovieRepository)
 class MovieRepository implements IMovieRepository {
   final MovieDataSource movieDataSource;
 
