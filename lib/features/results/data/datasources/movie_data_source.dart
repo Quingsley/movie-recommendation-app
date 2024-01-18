@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/core/env_variables.dart';
 import 'package:movie_app/core/error/failures.dart';
 import 'package:movie_app/features/results/data/models/movie_model.dart';
@@ -11,6 +12,7 @@ abstract class MovieDataSource {
       String date, String genreIds, double rating);
 }
 
+@Injectable(as: MovieDataSource)
 class MovieDataSourceImpl extends MovieDataSource {
   final Dio client;
 
