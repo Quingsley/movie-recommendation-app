@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/core/env_variables.dart';
 import 'package:movie_app/core/error/failures.dart';
 import 'package:movie_app/features/genre/data/models/genre_model.dart';
@@ -10,6 +11,7 @@ abstract class GenreDataSource {
   Future<List<GenreEntity>> getGenres();
 }
 
+@Injectable(as: GenreDataSource)
 class GenreDataSourceImpl extends GenreDataSource {
   final Dio client;
 
