@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/core/error/failures.dart';
 import 'package:movie_app/features/genre/data/datasources/genre_data_source.dart';
 import 'package:movie_app/features/genre/domain/entities/genre_entity.dart';
 import 'package:movie_app/features/genre/domain/repositories/igenre_repository.dart';
 
+@Injectable(as: IGenreRepository)
 class GenreRepositoryImpl extends IGenreRepository {
   final GenreDataSource genreDataSource;
 
