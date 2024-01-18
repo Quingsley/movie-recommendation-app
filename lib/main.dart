@@ -11,9 +11,9 @@ import 'package:movie_app/injection.dart';
 import 'package:movie_app/theme/custom_theme.dart';
 import 'injection.dart' as di;
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.init();
+  di.configureDependencies();
   runApp(const MainApp());
 }
 
@@ -25,18 +25,18 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieFlowCubit>(
-            create: (BuildContext context) => serviceLocator<MovieFlowCubit>()),
+            create: (BuildContext context) => getIt<MovieFlowCubit>()),
         BlocProvider<YearsBackCubit>(
-          create: (BuildContext context) => serviceLocator<YearsBackCubit>(),
+          create: (BuildContext context) => getIt<YearsBackCubit>(),
         ),
         BlocProvider<GenreCubit>(
-          create: (BuildContext context) => serviceLocator<GenreCubit>(),
+          create: (BuildContext context) => getIt<GenreCubit>(),
         ),
         BlocProvider<RatingCubit>(
-          create: (BuildContext context) => serviceLocator<RatingCubit>(),
+          create: (BuildContext context) => getIt<RatingCubit>(),
         ),
         BlocProvider<ResultsCubit>(
-          create: (BuildContext context) => serviceLocator<ResultsCubit>(),
+          create: (BuildContext context) => getIt<ResultsCubit>(),
         ),
       ],
       child: MaterialApp(
