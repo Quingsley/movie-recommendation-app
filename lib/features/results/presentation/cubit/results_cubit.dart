@@ -1,11 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/features/genre/domain/entities/genre_entity.dart';
 import 'package:movie_app/features/results/domain/entities/movie_entity.dart';
 import 'package:movie_app/features/results/domain/usecases/movie_usecase.dart';
 
 part 'results_state.dart';
 
+@Injectable()
 class ResultsCubit extends Cubit<ResultsState> {
   ResultsCubit({required this.movieUseCase}) : super(ResultsInitial());
 
